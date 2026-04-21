@@ -1,4 +1,5 @@
 # Vanilla JS Pokédex 🔴
+[https://aaronhero03.github.io/PokeApi/](https://aaronhero03.github.io/PokeApi/)
 
 A sleek, responsive Pokédex web application built from scratch without heavy frameworks. It consumes the official PokéAPI (https://pokeapi.co/) to display a grid of Pokémon and provides a detailed view of their stats, abilities, and types.
 
@@ -12,6 +13,8 @@ A sleek, responsive Pokédex web application built from scratch without heavy fr
 
 ## 🚀 Getting Started
 
+**🌟 Live Demo:** Or simply try the app right now in your browser: [https://aaronhero03.github.io/PokeApi/](https://aaronhero03.github.io/PokeApi/)
+
 Since this project is built entirely with native web technologies, there are no complex Node.js environments or build steps to configure.
 
 1. Clone the repository:
@@ -23,6 +26,7 @@ Since this project is built entirely with native web technologies, there are no 
 3. Run the app:
    Simply double-click the `index.html` file to open it in your default web browser. Alternatively, you can use an extension like "Live Server" in VS Code for hot reloading during development.
 
+  
 ## 📂 Project Structure
 
 - index.html: The main markup file containing the Tailwind CSS CDN and the core layout (Grid + Sticky Right Panel).
