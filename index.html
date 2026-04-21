@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Pokédex Pro - PokéAPI</title>
+		<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+		<style>
+			.pokemon-card:hover {
+				transform: translateY(-5px);
+			}
+			/* Opcional: Para hacer el scrollbar más sutil en webkit */
+			::-webkit-scrollbar {
+				width: 8px;
+			}
+			::-webkit-scrollbar-track {
+				background: transparent;
+			}
+			::-webkit-scrollbar-thumb {
+				background: #d1d5db;
+				border-radius: 4px;
+			}
+			::-webkit-scrollbar-thumb:hover {
+				background: #9ca3af;
+			}
+		</style>
+	</head>
+
+	<body
+		class="font-sans text-gray-800 bg-[#f6f8fc] flex h-screen overflow-hidden"
+	>
+		<div class="flex-1 flex flex-col h-full overflow-y-auto relative">
+			<nav class="bg-white shadow-sm sticky top-0 z-50 p-4">
+				<div class="px-4 md:px-8 flex justify-between items-center">
+					<div class="flex items-center gap-2">
+						<img
+							src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Pok%C3%A9_Ball_icon.svg/960px-Pok%C3%A9_Ball_icon.svg.png"
+							alt="Pokeball"
+							class="w-10 h-10 object-contain drop-shadow-sm"
+						/>
+
+						<h1
+							class="text-2xl font-black tracking-tighter italic text-gray-900"
+						>
+							POKÉDEX
+						</h1>
+					</div>
+					<div class="hidden md:flex gap-6 font-semibold text-sm">
+						<a href="#" class="text-red-500 border-b-2 border-red-500">Home</a>
+						<a href="#" class="hover:text-red-500 transition">About</a>
+						<a href="#" class="hover:text-red-500 transition">Species</a>
+						<a href="#" class="hover:text-red-500 transition">Contact</a>
+					</div>
+				</div>
+			</nav>
+
+			<main class="p-4 md:p-8 flex flex-col lg:flex-row gap-8">
+				<aside
+					class="w-full lg:w-64 space-y-6 shrink-0 lg:sticky lg:top-8 h-fit"
+				>
+					<div class="relative">
+						<input
+							type="text"
+							id="search"
+							placeholder="Search Pokémon..."
+							class="w-full p-3 pl-10 rounded-xl bg-white shadow-sm border border-transparent focus:border-red-400 outline-none transition"
+						/>
+						<span class="absolute left-3 top-3.5 opacity-30">🔍</span>
+					</div>
+
+					<div class="bg-white p-6 rounded-2xl shadow-sm space-y-4">
+						<div>
+							<label
+								class="text-xs font-bold uppercase text-gray-400 tracking-wider"
+								>Types</label
+							>
+							<select
+								id="type-filter"
+								class="w-full mt-1 p-2 bg-gray-50 rounded-lg border-none text-sm outline-none"
+							>
+								<option value="all">All Types</option>
+							</select>
+						</div>
+						<div>
+							<label
+								class="text-xs font-bold uppercase text-gray-400 tracking-wider"
+								>Sort By</label
+							>
+							<select
+								class="w-full mt-1 p-2 bg-gray-50 rounded-lg border-none text-sm outline-none"
+							>
+								<option>ID Low to High</option>
+								<option>ID High to Low</option>
+								<option>A - Z</option>
+							</select>
+						</div>
+					</div>
+				</aside>
+
+				<section class="flex-1">
+					<div
+						id="pokedex-list"
+						class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+					>
+						<div class="bg-white rounded-2xl p-6 shadow-sm animate-pulse">
+							<div
+								class="w-24 h-24 bg-gray-200 rounded-full mx-auto mb-4"
+							></div>
+							<div class="h-4 bg-gray-200 rounded w-3/4 mx-auto mb-2"></div>
+							<div class="h-4 bg-gray-200 rounded w-1/2 mx-auto"></div>
+						</div>
+					</div>
+
+					<div class="mt-12 mb-8 text-center">
+						<button
+							id="load-more"
+							class="bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-8 rounded-xl transition shadow-lg shadow-red-200"
+						>
+							Load More Pokémons
+						</button>
+					</div>
+				</section>
+			</main>
+		</div>
+
+		<aside
+			id="details-panel"
+			class="hidden lg:flex w-80 xl:w-[400px] bg-white border-l border-gray-200 shadow-2xl flex-col h-full shrink-0 z-50"
+		>
+			<div
+				class="h-full flex flex-col items-center justify-center text-center opacity-50 p-8"
+			></div>
+		</aside>
+
+		<div
+			id="modal"
+			class="fixed inset-0 bg-black/50 hidden items-center justify-center z-[100] p-4 backdrop-blur-sm"
+		>
+			<div
+				class="bg-white rounded-3xl max-w-lg w-full overflow-hidden relative shadow-2xl"
+			>
+				<button
+					id="close-modal"
+					class="absolute top-4 right-4 text-2xl font-bold"
+				>
+					&times;
+				</button>
+				<div id="modal-content"></div>
+			</div>
+		</div>
+
+		<script src="script.js"></script>
+	</body>
+</html>
